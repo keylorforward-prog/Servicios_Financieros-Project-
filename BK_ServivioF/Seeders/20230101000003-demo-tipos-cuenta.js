@@ -4,19 +4,19 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('tipos_cuenta', [
       {
-        nombre_cuenta: 'Cuenta de Ahorros',
-        descripcion_cuenta: 'Cuenta estándar para ahorros con intereses bajos',
-        permite_cheques_cuenta: false
+        nombre: 'Cuenta de Ahorros',
+        descripcion: 'Cuenta estándar para ahorros con intereses bajos',
+        permite_cheques: false
       },
       {
-        nombre_cuenta: 'Cuenta Corriente',
-        descripcion_cuenta: 'Cuenta para uso diario con chequera',
-        permite_cheques_cuenta: true
+        nombre: 'Cuenta Corriente',
+        descripcion: 'Cuenta para uso diario con chequera',
+        permite_cheques: true
       },
       {
-        nombre_cuenta: 'Cuenta Juvenil',
-        descripcion_cuenta: 'Para menores de edad, sin cargos por manejo',
-        permite_cheques_cuenta: false
+        nombre: 'Cuenta Juvenil',
+        descripcion: 'Para menores de edad, sin cargos por manejo',
+        permite_cheques: false
       }
     ], {});
   },

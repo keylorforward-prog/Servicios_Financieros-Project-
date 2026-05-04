@@ -6,7 +6,6 @@ const Sucursal = sequelize.define('Sucursal', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    field: 'idSucursal',
   },
   nombre: {
     type: DataTypes.STRING,

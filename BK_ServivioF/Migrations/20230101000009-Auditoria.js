@@ -3,8 +3,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('auditoria_sistema', {
-      id_Auditoria: {
-        type: Sequelize.INTEGER,
+      id: {
+        type: Sequelize.BIGINT,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
@@ -19,7 +19,7 @@ module.exports = {
         allowNull: true,
         references: {
           model: 'empleados',
-          key: 'id_Empleado',
+          key: 'idEmpleado',
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
@@ -35,7 +35,6 @@ module.exports = {
       accion_realizada: {
         type: Sequelize.STRING,
         allowNull: false,
-        comment: 'INSERT, UPDATE, DELETE',
       },
       valor_anterior: {
         type: Sequelize.JSON,
@@ -49,7 +48,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      detalles_auditoria: {
+      detalles: {
         type: Sequelize.TEXT,
         allowNull: true,
       },

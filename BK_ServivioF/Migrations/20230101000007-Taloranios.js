@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('talonarios', {
-      id_talonario: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'cuentas',
-          key: 'id_cuenta',
+          key: 'numero_cuenta',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -22,7 +22,6 @@ module.exports = {
       tipo_talonario: {
         type: Sequelize.STRING,
         allowNull: false,
-        comment: 'Ej: cheques, retiros',
       },
       serie_inicio: {
         type: Sequelize.INTEGER,

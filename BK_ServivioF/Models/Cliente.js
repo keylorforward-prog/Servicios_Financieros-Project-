@@ -7,7 +7,6 @@ const Cliente = sequelize.define('Cliente', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    field: 'idClientes',
   },
   tipo_id: {
     type: DataTypes.STRING,
@@ -71,3 +70,10 @@ Cliente.prototype.toJSON = function() {
 };
 
 module.exports = Cliente;
+
+//Se podria poner individual el apellido 1 y apellido 2 no solamente nombre_completo
+//Se podria implemetar un cliente_activo con una boolean 0 no 1 activo
+//Para el tipo_id podria ser un enum para que sea solo cedula o dimex
+//Para direccion podria dividirlo en provincia, canton, distrito, ubicacion aprox
+
+//Si se intenta borrar un cliente va devolver algo la db q no se puede, seguridad 

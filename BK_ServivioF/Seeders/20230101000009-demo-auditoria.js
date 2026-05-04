@@ -12,7 +12,7 @@ module.exports = {
         valor_anterior: null,
         valor_nuevo: JSON.stringify({ saldo: 500000.00, moneda: 'CRC' }),
         ip_terminal: '192.168.1.10',
-        detalles_auditoria: 'Apertura de cuenta inicial'
+        detalles: 'Apertura de cuenta inicial'
       },
       {
         fecha_evento: new Date(),
@@ -23,7 +23,7 @@ module.exports = {
         valor_anterior: null,
         valor_nuevo: JSON.stringify({ monto: 50000.00, tipo: 'deposito' }),
         ip_terminal: '192.168.1.15',
-        detalles_auditoria: 'Depósito en efectivo realizado por cajero'
+        detalles: 'Depósito en efectivo realizado por cajero'
       }
     ], {});
   },

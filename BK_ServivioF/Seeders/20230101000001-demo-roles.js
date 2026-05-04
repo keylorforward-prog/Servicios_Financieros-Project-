@@ -5,19 +5,19 @@ module.exports = {
     await queryInterface.bulkInsert('roles', [
       {
         nombre_rol: 'Administrador',
-        descripcion_rol: 'Acceso total al sistema',
+        descripcion: 'Acceso total al sistema',
       },
       {
         nombre_rol: 'Cajero',
-        descripcion_rol: 'Realiza transacciones en ventanilla',
+        descripcion: 'Realiza transacciones en ventanilla',
       },
       {
         nombre_rol: 'Gerente de Sucursal',
-        descripcion_rol: 'Supervisa las operaciones de la sucursal',
+        descripcion: 'Supervisa las operaciones de la sucursal',
       },
       {
         nombre_rol: 'Plataforma',
-        descripcion_rol: 'Atención al cliente y apertura de cuentas',
+        descripcion: 'Atención al cliente y apertura de cuentas',
       }
     ], {});
   },

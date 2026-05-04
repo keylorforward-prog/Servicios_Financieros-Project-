@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('cuentas', {
-      id_cuenta: {
+      numero_cuenta: {
         type: Sequelize.STRING,
         primaryKey: true,
         allowNull: false,
@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'clientes',
-          key: 'id_clientes',
+          key: 'idClientes',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'sucursales',
-          key: 'id_sucursal',
+          key: 'idSucursal',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -33,26 +33,24 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'tipos_cuenta',
-          key: 'id_tipoCuenta',
+          key: 'idTipoCuenta',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
       },
-      moneda_cuenta: {
+      moneda: {
         type: Sequelize.STRING(3),
         allowNull: false,
-        comment: 'ISO 4217: CRC, USD',
       },
       saldo_actual: {
         type: Sequelize.DECIMAL(18, 2),
         allowNull: false,
         defaultValue: 0.00,
       },
-      estado_cuenta: {
+      estado: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: 'activa',
-        comment: 'activa, inactiva, bloqueada, cerrada',
       },
       creado_el: {
         type: Sequelize.DATE,

@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('empleados', {
-      id_Empleado: {
+      idEmpleado: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'sucursales',
-          key: 'id_sucursal',
+          key: 'idSucursal',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'roles',
-          key: 'id_rol',
+          key: 'idRol',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -34,27 +34,15 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      nombre_empleado: {
+      nombre_completo: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      segundo_nombre_empleado: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      apellido1: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      apellido2: {
-        type: Sequelize.STRING,
-        allowNull: true,  // Segundo apellido opcional
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      empleado_creado_date: {
+      creado_el: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

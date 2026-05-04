@@ -46,6 +46,8 @@ async function startServer() {
     // 3. Levantar el servidor
     app.listen(PORT, () => {
       console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+      console.log(`🫡 Swagger page http://localhost:3000/docs/`);
+      
     });
   } catch (error) {
     console.error('❌ No se pudo conectar a la base de datos:', error.message);

@@ -19,6 +19,17 @@ Añade datos aleatorios a la contraseña antes de cifrarla para evitar que dos u
 ### Factor de Costo (Rounds)
 Bcrypt es deliberadamente lento para dificultar ataques de fuerza bruta. Por defecto usamos 10 rounds.
 
+### Anatomía de un Hash de Bcrypt
+Tomemos como ejemplo el hash: `$2b$10$otSB/ahtHi7qeSvMqQgoVewIt1OIc4rEBlOVo8R7NAQblfS1BL3K6`
+
+Este *string* se divide por los signos de dólar (`$`) en 4 partes esenciales:
+1. **`2b` (El Algoritmo)**: Indica la versión de Bcrypt utilizada.
+2. **`10` (El Costo / *Salt Rounds*)**: Es cuántas veces el algoritmo dio vueltas (iteraciones) para encriptar la clave. En este caso, $2^{10}$ (1024) iteraciones.
+3. **`otSB/ahtHi7qeSvMqQgoVe` (El Salt)**: Son 22 caracteres aleatorios que se generan y se unen a tu contraseña *antes* de encriptarla. Es el secreto que garantiza que si dos personas usan "1234", sus hashes se vean totalmente diferentes.
+4. **`wIt1OIc4rEBlOVo8R7NAQblfS1BL3K6` (El Hash)**: Es el resultado matemático final.
+
+> **Nota sobre los Seeders**: Si revisas la base de datos de prueba y notas que todos los usuarios tienen el mismo hash exacto, esto se debe a una optimización en los archivos *Seeders*. Para insertar los datos rápidamente, el script genera el *salt* y el hash una sola vez al inicio del archivo y lo reutiliza para todos los usuarios. En producción, cada usuario registrado por la API generará un hash completamente único.
+
 ## Flujo en el Proyecto
 1. **Al Registrarse**: El hook `beforeCreate` genera un salt, combina la contraseña y guarda el hash.
 2. **Al Iniciar Sesión**: Se compara el texto enviado con el hash guardado usando `bcrypt.compare()`.

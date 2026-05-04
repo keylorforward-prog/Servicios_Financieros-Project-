@@ -3,22 +3,22 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('tipos_cuenta', {
-      id_tipoCuenta: {
+      idTipoCuenta: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
       },
-      nombre_cuenta: {
+      nombre: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
       },
-      descripcion_cuenta: {
+      descripcion: {
         type: Sequelize.TEXT,
         allowNull: true,
       },
-      permite_cheques_cuenta: {
+      permite_cheques: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: false,

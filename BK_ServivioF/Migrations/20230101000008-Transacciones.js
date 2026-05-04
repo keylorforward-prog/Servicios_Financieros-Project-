@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('transacciones_ventanilla', {
-      id_transacciones: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'cuentas',
-          key: 'id_cuenta',
+          key: 'numero_cuenta',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -24,7 +24,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'empleados',
-          key: 'id_Empleado',
+          key: 'idEmpleado',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'sucursales',
-          key: 'id_sucursal',
+          key: 'idSucursal',
         },
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT',
@@ -46,13 +46,12 @@ module.exports = {
       tipo_operacion: {
         type: Sequelize.STRING,
         allowNull: false,
-        comment: 'deposito, retiro, transferencia',
       },
       numero_boleta_fisica: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      fecha_transaccion: {
+      creado_el: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),

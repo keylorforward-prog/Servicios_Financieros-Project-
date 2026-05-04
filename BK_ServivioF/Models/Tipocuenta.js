@@ -6,7 +6,6 @@ const TipoCuenta = sequelize.define('TipoCuenta', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    field: 'idTipoCuenta',
   },
   nombre: {
     type: DataTypes.STRING,

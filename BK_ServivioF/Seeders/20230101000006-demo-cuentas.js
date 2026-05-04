@@ -5,33 +5,33 @@ module.exports = {
     // Asumimos clientes 1, 2, 3, sucursales 1, 2, 3 y tipos_cuenta 1, 2, 3
     await queryInterface.bulkInsert('cuentas', [
       {
-        id_cuenta: 'CR010123456789',
+        numero_cuenta: 'CR010123456789',
         cliente_id: 1,
         sucursal_apertura_id: 1,
         tipo_cuenta_id: 1, // Ahorros
-        moneda_cuenta: 'CRC',
+        moneda: 'CRC',
         saldo_actual: 500000.00,
-        estado_cuenta: 'activa',
+        estado: 'activa',
         creado_el: new Date()
       },
       {
-        id_cuenta: 'CR020987654321',
+        numero_cuenta: 'CR020987654321',
         cliente_id: 2,
         sucursal_apertura_id: 2,
         tipo_cuenta_id: 2, // Corriente
-        moneda_cuenta: 'USD',
+        moneda: 'USD',
         saldo_actual: 1500.00,
-        estado_cuenta: 'activa',
+        estado: 'activa',
         creado_el: new Date()
       },
       {
-        id_cuenta: 'CR030555444333',
+        numero_cuenta: 'CR030555444333',
         cliente_id: 3,
         sucursal_apertura_id: 1,
         tipo_cuenta_id: 1, // Ahorros
-        moneda_cuenta: 'CRC',
+        moneda: 'CRC',
         saldo_actual: 10000.00,
-        estado_cuenta: 'activa',
+        estado: 'activa',
         creado_el: new Date()
       }
     ], {});

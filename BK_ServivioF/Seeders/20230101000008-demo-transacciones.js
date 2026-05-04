@@ -10,7 +10,7 @@ module.exports = {
         monto: 50000.00,
         tipo_operacion: 'deposito',
         numero_boleta_fisica: 'BO-1001',
-        fecha_transaccion: new Date()
+        creado_el: new Date()
       },
       {
         cuenta_id: 'CR020987654321',
@@ -19,7 +19,7 @@ module.exports = {
         monto: 100.00,
         tipo_operacion: 'retiro',
         numero_boleta_fisica: 'BO-1002',
-        fecha_transaccion: new Date()
+        creado_el: new Date()
       },
       {
         cuenta_id: 'CR030555444333',
@@ -28,7 +28,7 @@ module.exports = {
         monto: 5000.00,
         tipo_operacion: 'deposito',
         numero_boleta_fisica: 'BO-1003',
-        fecha_transaccion: new Date()
+        creado_el: new Date()
       }
     ], {});
   },

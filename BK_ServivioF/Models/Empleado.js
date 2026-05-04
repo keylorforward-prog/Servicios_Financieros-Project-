@@ -7,7 +7,6 @@ const Empleado = sequelize.define('Empleado', {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    field: 'idEmpleado',
   },
   sucursal_id: {
     type: DataTypes.INTEGER,

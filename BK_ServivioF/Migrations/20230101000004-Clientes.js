@@ -44,6 +44,10 @@ module.exports = {
         allowNull: true,
         comment: 'Ruta o referencia al archivo de firma',
       },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       cliente_creado: {
         type: Sequelize.DATE,
         allowNull: false,

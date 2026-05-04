@@ -50,6 +50,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,  // Segundo apellido opcional
       },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       empleado_creado_date: {
         type: Sequelize.DATE,
         allowNull: false,

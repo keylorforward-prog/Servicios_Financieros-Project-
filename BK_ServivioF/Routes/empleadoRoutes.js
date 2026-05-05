@@ -1,6 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const express           = require('express');
+const router            = express.Router();
 const EmpleadoController = require('../Controller/EmpleadoController');
+const { verifyToken }   = require('../Middleware/authMiddleware');
+const { authorizeRoles }= require('../Middleware/roleMiddleware');
 
 /**
  * @swagger
@@ -15,11 +17,15 @@ const EmpleadoController = require('../Controller/EmpleadoController');
  *   get:
  *     summary: Obtener todos los empleados
  *     tags: [Empleados]
+ *     security:
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de empleados con sus sucursales y roles
+ *       401:
+ *         description: Token ausente o inválido
  */
-router.get('/', EmpleadoController.getAll);
+router.get('/', verifyToken, EmpleadoController.getAll);
 
 /**
  * @swagger
@@ -27,6 +33,8 @@ router.get('/', EmpleadoController.getAll);
  *   get:
  *     summary: Obtener un empleado por ID
  *     tags: [Empleados]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -36,8 +44,12 @@ router.get('/', EmpleadoController.getAll);
  *     responses:
  *       200:
  *         description: Datos detallados del empleado
+ *       401:
+ *         description: Token ausente o inválido
+ *       404:
+ *         description: Empleado no encontrado
  */
-router.get('/:id', EmpleadoController.getById);
+router.get('/:id', verifyToken, EmpleadoController.getById);
 
 /**
  * @swagger
@@ -45,6 +57,9 @@ router.get('/:id', EmpleadoController.getById);
  *   post:
  *     summary: Registrar un nuevo empleado
  *     tags: [Empleados]
+ *     security:
+ *       - BearerAuth: []
+ *     description: Solo los **Administradores** pueden crear empleados.
  *     requestBody:
  *       required: true
  *       content:
@@ -57,11 +72,21 @@ router.get('/:id', EmpleadoController.getById);
  *               - sucursal_id
  *               - rol_id
  *               - password
+ *             properties:
+ *               cedula_identidad: { type: string }
+ *               nombre_completo:  { type: string }
+ *               sucursal_id:      { type: integer }
+ *               rol_id:           { type: integer }
+ *               password:         { type: string, format: password }
  *     responses:
  *       201:
  *         description: Empleado registrado exitosamente
+ *       401:
+ *         description: Token ausente o inválido
+ *       403:
+ *         description: Rol insuficiente (se requiere Administrador)
  */
-router.post('/', EmpleadoController.create);
+router.post('/', verifyToken, authorizeRoles('Administrador'), EmpleadoController.create);
 
 /**
  * @swagger
@@ -69,15 +94,24 @@ router.post('/', EmpleadoController.create);
  *   put:
  *     summary: Actualizar datos de un empleado
  *     tags: [Empleados]
+ *     security:
+ *       - BearerAuth: []
+ *     description: Solo los **Administradores** pueden actualizar empleados.
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
+ *         schema:
+ *           type: integer
  *     responses:
  *       200:
  *         description: Empleado actualizado
+ *       401:
+ *         description: Token ausente o inválido
+ *       403:
+ *         description: Rol insuficiente
  */
-router.put('/:id', EmpleadoController.update);
+router.put('/:id', verifyToken, authorizeRoles('Administrador'), EmpleadoController.update);
 
 /**
  * @swagger
@@ -85,14 +119,24 @@ router.put('/:id', EmpleadoController.update);
  *   delete:
  *     summary: Dar de baja a un empleado
  *     tags: [Empleados]
+ *     security:
+ *       - BearerAuth: []
+ *     description: Solo los **Administradores** pueden eliminar empleados.
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
+ *         schema:
+ *           type: integer
  *     responses:
  *       200:
  *         description: Empleado eliminado
+ *       401:
+ *         description: Token ausente o inválido
+ *       403:
+ *         description: Rol insuficiente
  */
-router.delete('/:id', EmpleadoController.delete);
+router.delete('/:id', verifyToken, authorizeRoles('Administrador'), EmpleadoController.delete);
 
 module.exports = router;
+
